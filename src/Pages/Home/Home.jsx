@@ -1,4 +1,5 @@
 import Card from "../../Components/Card/Card";
+
 import Layout from "../../Components/Layout/Layout";
 import ProductDetail from "../../Components/Product-detail/productDetail";
 
@@ -34,6 +35,7 @@ const Home = () => {
           ))}
         </div>
         <ProductDetail/>
+        
       </Layout>
     </div>
   );

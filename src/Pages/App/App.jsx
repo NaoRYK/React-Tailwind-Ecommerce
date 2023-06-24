@@ -8,6 +8,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { ShoppingCartProvider } from "../../Context/Context";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import CheckoutSide from "../../Components/CheckoutSide/CheckoutSide";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/orders" element={<MyOrders />}></Route>
           <Route path="/not_found" element={<NotFound />}></Route>
         </Routes>
+        <CheckoutSide></CheckoutSide>
       </Router>
     </ShoppingCartProvider>
   );

@@ -4,12 +4,31 @@ import { ShoppingCartContext } from "../../Context/Context.jsx";
 const Card = (props) => {
   const context = useContext(ShoppingCartContext);
   const showProduct = (product) => {
-    context.openProductDetail();
+
+    if(context.isCheckoutOpen){
+      context.closeCheckout()
+      context.openProductDetail();
+    }
+    else{
+      context.openProductDetail();
+    }
+    
     context.setProductToShow(product);
   };
   const addProductsToCart = (productData) => {
-    context.setCartProducts(...context.cartProducts, productData);
-    console.log("productos", context.cartProducts);
+    context.setCount(context.count + 1)
+    context.setCartProducts([...context.cartProducts, productData]);
+
+    if(context.isProductDetailOpen){
+      context.closeProductDetail()
+      context.openCheckout()
+
+    }
+    else{
+      context.openCheckout()
+
+    }
+    
   };
 
   return (
@@ -27,7 +46,7 @@ const Card = (props) => {
         <div
           onClick={() => {
             addProductsToCart(props);
-            context.setCount(context.count + 1);
+            
           }}
           className="p-1 absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-md m-2 p- font-bold "
         >

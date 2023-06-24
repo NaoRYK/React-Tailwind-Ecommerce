@@ -18,6 +18,12 @@ export const ShoppingCartProvider = ({children}) =>{
 
     //My Orders - Add products
     const [cartProducts, setCartProducts] = useState([])
+
+    //Checkout show
+
+    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+    const openCheckout =() => setIsCheckoutOpen(true);
+    const closeCheckout =() => setIsCheckoutOpen(false);
     return(
         <ShoppingCartContext.Provider value={{
             count,
@@ -29,6 +35,10 @@ export const ShoppingCartProvider = ({children}) =>{
             setProductToShow,
             cartProducts,
             setCartProducts,
+            setIsCheckoutOpen,
+            isCheckoutOpen,
+            openCheckout,
+            closeCheckout
 
         }}>
             {children}
