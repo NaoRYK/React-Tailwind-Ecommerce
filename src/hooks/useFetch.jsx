@@ -12,8 +12,9 @@ const useFetch = (url,sliceAmount)=>{
         .then((data) =>{
             setLoading(false)
             setError(null)
-
+            
             let slicedData = data?.slice(1, sliceAmount);
+            console.log("sliced", data, slicedData,url)
             setData(slicedData)
         })
         .catch((err) =>{
