@@ -6,13 +6,17 @@ import OrderCard from "../OrderCard/OrderCard";
 
 const CheckoutSide = () => {
   const context = useContext(ShoppingCartContext);
-  console.log('product to show', context.productToShow)
+  
+  const handleDelete = (id) =>{
+     const filteredProducts = context.cartProducts.filter(product => product.id !== id);
+     context.setCartProducts(filteredProducts);
+  }
 
   return (
     <aside
       className={`${
         context.isCheckoutOpen ? "flex" : "hidden"
-      } overflow-scroll overflow-x-hidden shadow-2xl checkout-side-menu  flex-col fixed right-0 border bg-gray-100 border-black rounded-lg`}
+      } overflow-scroll overflow-x-hidden shadow-2xl checkout-side-menu  flex-col fixed right-0 border-2 bg-gray-100 border-black/20 rounded-lg`}
     >
       <div className="flex justify-between items-center p-6 border-b-4 border-gray-300 mb-4 ">
         <h2 className="font-medium text-xl">My Order</h2>
@@ -43,7 +47,7 @@ const CheckoutSide = () => {
       <div>
       {
         context.cartProducts.map(product =>(
-            <OrderCard key={product.id} title={product.name} price={product.price} image={product.img}></OrderCard>
+            <OrderCard handleDelete={handleDelete} id={product.id} key={product.id} title={product.name} price={product.price} image={product.img}></OrderCard>
         ))
       }
       </div>

@@ -26,6 +26,7 @@ const Home = () => {
           data?.map((item) => (
             <Card
               key={item.id}
+              id={item.id}
               category={item.category.name}
               name={item.title}
               price={item.price}

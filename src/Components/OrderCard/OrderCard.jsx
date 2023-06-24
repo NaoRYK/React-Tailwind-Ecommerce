@@ -1,10 +1,10 @@
 import React from 'react'
 
 const OrderCard = props => {
-    const { title, image,price} = props;
+    const { title, image,price, handleDelete,id} = props;
 
   return (
-    <div className='flex p-4 border-white border-4 justify-between items-center'>
+    <div className=' ml-1 mr-1 flex mb-2 p-4 bg-slate-100 border-black/240 border-4 justify-between items-center'>
         <div className='flex items-center gap-2'>
             <figure className='w-20 h-20'>
                 <img className='w-full h-full rounded-lg object-cover' src={image} alt={title} />
@@ -20,6 +20,7 @@ const OrderCard = props => {
             strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6 cursor-pointer"
+            onClick={()=>{handleDelete(id)}}
           >
             <path
               strokeLinecap="round"

@@ -1,34 +1,53 @@
 import React, { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/Context.jsx";
+import { render } from "react-dom";
 
 const Card = (props) => {
   const context = useContext(ShoppingCartContext);
-  const showProduct = (product) => {
 
-    if(context.isCheckoutOpen){
-      context.closeCheckout()
+  const renderIcon = (id) => {
+    const isInCart =
+      context.cartProducts.filter((product) => product.id === id).length > 0;
+
+    if (isInCart) {
+      return (
+        <div className=" p-4 text-white cursor-default absolute top-0 right-0 flex justify-center items-center bg-emerald-500 w-6 h-6 rounded-md m-2  font-bold ">
+          ✓
+        </div>
+      );
+    } else {
+      return (
+        <div
+          onClick={() => {
+            addProductsToCart(props);
+          }}
+          className="p-4 text-xl absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-md m-2 p- font-bold "
+        >
+          +
+        </div>
+      );
+    }
+  };
+  const showProduct = (product) => {
+    if (context.isCheckoutOpen) {
+      context.closeCheckout();
+      context.openProductDetail();
+    } else {
       context.openProductDetail();
     }
-    else{
-      context.openProductDetail();
-    }
-    
+
     context.setProductToShow(product);
   };
   const addProductsToCart = (productData) => {
-    context.setCount(context.count + 1)
+    context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
 
-    if(context.isProductDetailOpen){
-      context.closeProductDetail()
-      context.openCheckout()
-
+    if (context.isProductDetailOpen) {
+      context.closeProductDetail();
+      context.openCheckout();
+    } else {
+      context.openCheckout();
     }
-    else{
-      context.openCheckout()
-
-    }
-    
   };
 
   return (
@@ -43,15 +62,7 @@ const Card = (props) => {
           src={props.img}
           alt="headphones"
         />
-        <div
-          onClick={() => {
-            addProductsToCart(props);
-            
-          }}
-          className="p-1 absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-md m-2 p- font-bold "
-        >
-          +
-        </div>
+        {renderIcon(props.id)}
         <p
           onClick={() => showProduct(props)}
           className="flex justify-between mt-1 p-2"
