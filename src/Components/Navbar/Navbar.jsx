@@ -13,15 +13,18 @@ const Navbar = () => {
           <p className="page-title font-semibold text-lg">
             <NavLink
               to="/"
+              onClick={() => {context.setSearchedCategory(null)
+               }}
              
             >
               Shopped
             </NavLink>
           </p>
-          <li>
+          <li >
             <NavLink
               to="/all"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => {context.setSearchedCategory("all") }}
              
             >
               All
@@ -40,7 +43,7 @@ const Navbar = () => {
             <NavLink
               to="/furnitures"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
-              onClick={() => {context.setSearchedCategory("furnitures")}}
+              onClick={() => {context.setSearchedCategory("furniture")}}
             >
               Furnitures
             </NavLink>

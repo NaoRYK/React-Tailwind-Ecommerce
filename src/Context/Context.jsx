@@ -42,15 +42,76 @@ export const ShoppingCartProvider = ({children}) =>{
     const filteredItemsByTitle = (items,searchByTitle) =>{
         return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
+    const [searchedCategory, setSearchedCategory] = useState(null)
 
+    const filteredItemsByCategory = (items,searchByCategory) =>{
+        return items?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+
+    //Saber en que url estamos
+    const [filterType, setFilterType] = useState(null)
+
+    let currentPath = window.location.pathname;
+    let index = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    
+
+    const filterBy = (searchType,data, searchByTitle, searchByCategory) =>{
+        if(searchType === "BY_TITLE"){
+            console.log("by title", searchType)
+            return filteredItemsByTitle(data,searchByTitle)
+            
+        }
+        if(searchType === "BY_CATEGORY"){
+            console.log("by categ", searchType)
+            return filteredItemsByCategory(data,searchByCategory)
+        }
+        if(searchType === "BY_TITLE_AND_CATEGORY"){
+            console.log("by dos", searchType)
+            return filteredItemsByCategory(data,searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+        }
+        if(searchType === "BY_ALL"){
+        
+            return data;
+        }
+        if(searchType === "BY_ALL_AND_TITLE"){
+        
+            return filteredItemsByTitle(data,searchByTitle);
+        }
+        if(!searchType ){
+ 
+            return data;
+        }
+    }
     useEffect(() => {
 
-      if(searchByTitle) setFilteredItems(filteredItemsByTitle(data,searchByTitle))
+      if(searchByTitle && searchedCategory) {setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY',data,searchByTitle,searchedCategory))
+    setFilterType("BY_TITLE_AND_CATEGORY")
+    }
+      if(searchByTitle && !searchedCategory) {setFilteredItems(filterBy('BY_TITLE',data,searchByTitle,searchedCategory))
+    setFilterType("BY_TITLE")
+    }
+      if(!searchByTitle && searchedCategory) {setFilteredItems(filterBy('BY_CATEGORY',data,searchByTitle,searchedCategory))
+    setFilterType("BY_CATEGORY")
+    }
+    if(index === "all") {setFilteredItems(filterBy("BY_ALL",data,searchByTitle,searchedCategory))
+        setFilterType("BY_ALL")
+        
+        }
     
-    }, [data,searchByTitle])
+        if(index === "all" && searchByTitle) {setFilteredItems(filterBy("BY_ALL_AND_TITLE",data,searchByTitle,searchedCategory))
+        setFilterType("BY_ALL_AND_TITLE")
+        
+        }
+      if(!searchByTitle && !searchedCategory) {setFilteredItems(filterBy(null,data,searchByTitle,searchedCategory))
+    setFilterType(null)
+    }
+    //   if(searchedCategory) setFilteredItems(filterBy(data,searchedCategory))
+    
+    }, [data,searchByTitle,searchedCategory])
 //search by categories
 
-    const [searchedCategory, setSearchedCategory] = useState("")
+
+console.log("lugar", index, currentPath)
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -80,7 +141,8 @@ export const ShoppingCartProvider = ({children}) =>{
             filteredItems,
             setFilteredItems,
             setSearchedCategory,
-            searchedCategory
+            searchedCategory,
+            filterType
 
         }}>
             {children}

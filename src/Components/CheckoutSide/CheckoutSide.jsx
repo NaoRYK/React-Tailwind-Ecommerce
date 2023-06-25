@@ -44,7 +44,7 @@ const CheckoutSide = () => {
     context.setCartProducts([])
 
     context.closeCheckout()
-
+    context.setSearchByTitle(null)
   };
 
   return (

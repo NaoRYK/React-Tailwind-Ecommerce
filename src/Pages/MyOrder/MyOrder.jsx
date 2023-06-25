@@ -16,7 +16,7 @@ const MyOrder = () => {
     <div>
       <Layout>
       <div className="flex items-center justify-center relative w-80">
-        <Link to="/orders" className="absolute left-0">
+        <Link to="/" className="absolute left-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
