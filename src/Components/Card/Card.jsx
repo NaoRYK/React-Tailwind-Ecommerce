@@ -51,9 +51,9 @@ const Card = (props) => {
   };
 
   return (
-    <div className="card-container bg-gray-500/20 cursor-pointer w-90 h-60 rounded-lg border-2">
+    <div className="card-container bg-gray-500/10 cursor-pointer w-90 h-60 rounded-lg border-2 border-emerald-600/40">
       <figure className="relative mb-2 w-full h-4/5">
-        <span className="absolute bottom-0 left-0 px-3 py-0.5 bg-white/60 rounded-lg m-2 text-black text-xs">
+        <span className="absolute bottom-0 left-0 px-3 py-0.5 bg-white/80 rounded-lg m-2 text-black text-xs">
           {props.category}
         </span>
         <img

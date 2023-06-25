@@ -10,18 +10,19 @@ const Navbar = () => {
     <div className="nav-container">
       <nav className="flex bg-gray-100 justify-between items-center fixed top-0 z-10 w-full py-5 px-8 txt-sm font-light">
         <ul className="flex items-center gap-3">
-          <li className="font-semibold text-lg">
+          <p className="page-title font-semibold text-lg">
             <NavLink
               to="/"
              
             >
               Shopped
             </NavLink>
-          </li>
+          </p>
           <li>
             <NavLink
               to="/all"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
+             
             >
               All
             </NavLink>
@@ -30,6 +31,7 @@ const Navbar = () => {
             <NavLink
               to="/clothes"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => {context.setSearchedCategory("clothes")}}
             >
               Clothes
             </NavLink>
@@ -38,14 +40,16 @@ const Navbar = () => {
             <NavLink
               to="/furnitures"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => {context.setSearchedCategory("furnitures")}}
             >
               Furnitures
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/toys"
+              to="/shoes"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => {context.setSearchedCategory("shoes")}}
             >
               Shoes
             </NavLink>
@@ -54,6 +58,7 @@ const Navbar = () => {
             <NavLink
               to="/others"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => {context.setSearchedCategory("others")}}
             >
               Others
             </NavLink>

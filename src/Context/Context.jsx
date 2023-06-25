@@ -1,15 +1,21 @@
-import React,{ createContext, useState } from "react";
+import React,{ createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
 
 
 
 export const ShoppingCartProvider = ({children}) =>{
+    //API
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(null)
+    const [data,setData] = useState(null)
+
 
     const [count,setCount] = useState(0);
     const [isProductDetailOpen,setisProductDetailOpen] = useState(false);
     const openProductDetail =() => setisProductDetailOpen(true);
     const closeProductDetail =() => setisProductDetailOpen(false);
+
 
 
     //Product detail - show product
@@ -29,6 +35,23 @@ export const ShoppingCartProvider = ({children}) =>{
     //My orders
     const [order,setOrder] = useState([]);
 
+    //Search
+    const [searchByTitle, setSearchByTitle] = useState(null)
+    const [filteredItems, setFilteredItems] = useState(null)
+
+    const filteredItemsByTitle = (items,searchByTitle) =>{
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+
+    useEffect(() => {
+
+      if(searchByTitle) setFilteredItems(filteredItemsByTitle(data,searchByTitle))
+    
+    }, [data,searchByTitle])
+//search by categories
+
+    const [searchedCategory, setSearchedCategory] = useState("")
+
     return(
         <ShoppingCartContext.Provider value={{
             count,
@@ -45,7 +68,19 @@ export const ShoppingCartProvider = ({children}) =>{
             openCheckout,
             closeCheckout,
             order,
-            setOrder, 
+            setOrder,
+            setLoading,
+            loading,
+            error,
+            setError,
+            data,
+            setData,
+            setSearchByTitle,
+            searchByTitle,
+            filteredItems,
+            setFilteredItems,
+            setSearchedCategory,
+            searchedCategory
 
         }}>
             {children}

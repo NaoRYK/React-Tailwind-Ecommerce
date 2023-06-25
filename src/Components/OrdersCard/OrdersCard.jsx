@@ -14,7 +14,12 @@ const OrdersCard = (props) => {
                 <span className="">{totalProducts} articles</span>
             </div>
 
-            <span className="  text-xl h-full self-center font-semibold">${totalPrice}</span>
+            <span className="  text-xl h-full font-semibold self-center">${totalPrice}</span>
+            <span className="flex items-center text-xl">
+            <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+</svg>
+            </span>
 
         </p>
     </div>

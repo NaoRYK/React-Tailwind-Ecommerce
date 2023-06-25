@@ -1,33 +1,26 @@
-import { useState,useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { ShoppingCartContext } from "../Context/Context";
 
 
 const useFetch = (url,sliceAmount)=>{
-    const [loading,setLoading] = useState(true);
-    const [error,setError] = useState(null)
-    const [data,setData] = useState(null)
-
+   const context = useContext(ShoppingCartContext);
     useEffect(()=>{
         fetch(url)
         .then((res)=> res.json())
         .then((data) =>{
-            setLoading(false)
-            setError(null)
+            context.setLoading(false)
+            context.setError(null)
             
             let slicedData = data?.slice(1, sliceAmount);
          
-            setData(slicedData)
+            context.setData(slicedData)
         })
         .catch((err) =>{
-            setLoading(false)
-            setError(err)
+            context.setLoading(false)
+            context.setError(err)
         })
     },[url])
 
-    return{
-        loading,
-        error,
-        data
-    };
 }
 
 export default useFetch;
