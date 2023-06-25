@@ -20,8 +20,10 @@ function App() {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/account" element={<MyAcc />}></Route>
           <Route path="/myorder" element={<MyOrder />}></Route>
+          <Route path="/myorder/last" element={<MyOrder />}></Route>
+          <Route path="/myorder/:id" element={<MyOrder />}></Route>
           <Route path="/orders" element={<MyOrders />}></Route>
-          <Route path="/not_found" element={<NotFound />}></Route>
+          <Route path="/*" element={<NotFound />}></Route>
         </Routes>
         <CheckoutSide></CheckoutSide>
       </Router>

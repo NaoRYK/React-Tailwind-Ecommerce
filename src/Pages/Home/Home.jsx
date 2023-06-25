@@ -9,7 +9,7 @@ const Home = () => {
   let { data,error, loading } = useFetch(
     "https://api.escuelajs.co/api/v1/products",53
   );
-  console.log(data)
+
 
 
 
@@ -18,7 +18,7 @@ const Home = () => {
     <div>
       
       <Layout>
-        Home
+        <h2 className="text-2xl font-bold mb-6">Home</h2>
         
         <div className=" pb-4 products-container grid items-center justify-center  gap-4 grid-cols-4 w-full max-w-screen-lg">
           {

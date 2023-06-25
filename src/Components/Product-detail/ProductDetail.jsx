@@ -3,7 +3,7 @@ import "./ProductDetail.css";
 import { ShoppingCartContext } from "../../Context/Context";
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-  console.log(context.cartProducts)
+
 
   return (
     <aside
