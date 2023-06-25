@@ -16,7 +16,7 @@ const Home = () => {
     // if(context.searchByTitle?.length >0){
       if(context.filterType !== null){
         if(context.filteredItems?.length > 0 ){
-          console.log(context.filteredItems.length)
+  
           return(
             context.loading ? <p className=" font-bold">Loading...</p> :
             context.filteredItems?.map((item) => (

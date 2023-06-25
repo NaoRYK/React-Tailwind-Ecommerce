@@ -57,16 +57,16 @@ export const ShoppingCartProvider = ({children}) =>{
 
     const filterBy = (searchType,data, searchByTitle, searchByCategory) =>{
         if(searchType === "BY_TITLE"){
-            console.log("by title", searchType)
+            
             return filteredItemsByTitle(data,searchByTitle)
             
         }
         if(searchType === "BY_CATEGORY"){
-            console.log("by categ", searchType)
+            
             return filteredItemsByCategory(data,searchByCategory)
         }
         if(searchType === "BY_TITLE_AND_CATEGORY"){
-            console.log("by dos", searchType)
+            
             return filteredItemsByCategory(data,searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
         }
         if(searchType === "BY_ALL"){
@@ -111,7 +111,7 @@ export const ShoppingCartProvider = ({children}) =>{
 //search by categories
 
 
-console.log("lugar", index, currentPath)
+
 
     return(
         <ShoppingCartContext.Provider value={{

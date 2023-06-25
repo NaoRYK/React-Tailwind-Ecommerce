@@ -69,7 +69,7 @@ const Navbar = () => {
         </ul>
         <ul className="flex items-center gap-3">
           <li className="">
-            <p className="text-emerald-500/50">github.com/NaoRYK</p>
+            <a  href="https://github.com/NaoRYK" className="text-emerald-500/50">github.com/NaoRYK</a>
           </li>
           <li>
             <NavLink to="/orders"  className={({ isActive }) => (isActive ? activeStyle : undefined)}  >My Orders</NavLink>
