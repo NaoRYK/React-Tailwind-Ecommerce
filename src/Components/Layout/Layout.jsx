@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Layout = ({children}) => {
+const Layout = ({children, color}) => {
   return (
-    <div className='flex flex-col items-center mt-20'>
+    <div className={`${color}  flex flex-col items-center mt-20 `}>
         {children}
     </div>
   )
